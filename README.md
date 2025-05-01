@@ -73,7 +73,7 @@ tasks sample
 ```
 {
     "tasks": ["summerize","translate-to-zh" | "translate-to-chinese"]
-    //for trsnlation can be any of the above two is accepted
+    //for translation can be any of the above two is accepted
 
     //for example
     "tasks":["summerize","extract-keywords","translate-to-bengali"]
