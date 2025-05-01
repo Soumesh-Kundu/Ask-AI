@@ -22,9 +22,9 @@
 **Sample Request**
 url: /ask-ai
 body: 
-```json
+```
 {
-    tasks:["summerize",
+    "tasks":["summerize",
         "extract-keywords"
     ],
     "content":"The rapid advancement of artificial intelligence is transforming industries across the globe. From healthcare and education to transportation and entertainment, AI technologies are streamlining operations, improving decision-making, and enhancing user experiences. However, with these innovations come important ethical considerations, including data privacy, algorithmic bias, and the future of employment. As we move forward, it's crucial to ensure that AI development remains transparent, inclusive, and aligned with societal values."
@@ -32,7 +32,7 @@ body:
 ```
 
 **Response**
-```json
+```
 {
     {
     "tasks": [
@@ -48,7 +48,7 @@ body:
 **Response with Pipeline**
 url: /ask-ai?pipeline=true
 body: Same body as above
-```json
+```
 {
     "tasks": [
         "summerize",
@@ -70,7 +70,7 @@ body: Same body as above
 
 
 tasks sample
-```json
+```
 {
     "tasks": ["summerize","translate-to-zh" | "translate-to-chinese"]
     //for trsnlation can be any of the above two is accepted
