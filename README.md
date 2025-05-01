@@ -4,7 +4,7 @@
 /ask-ai?pipeline=
 ```
 **Body** 
-```json
+```
 {
     "tasks":["summerize","extract-keywords","sentiment-analysis","complete"|"translate-to-<lang>"] 
     //any combination of the above will a valid task passed as array will be executed in order
@@ -12,7 +12,7 @@
 }
 ```
 **Query Parameters**
-```json
+```
 {
     "pipeline": "true"  //(default false) 
     // if true, the each stage response will be returned in the response
