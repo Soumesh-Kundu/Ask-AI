@@ -1,5 +1,5 @@
 import { google as GenAi } from "@ai-sdk/google";
-import { generateText, embed, streamText } from "ai";
+import { generateText } from "ai";
 
 const chatModel = GenAi("gemini-2.0-flash-001");
 
