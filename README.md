@@ -1,36 +1,81 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
-
-## Getting Started
-
-First, run the development server:
-
+# Ask AI  
+##### API endpoint
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+/ask-ai?pipeline=
+```
+**Body** 
+```json
+{
+    "tasks":["summerize","extract-keywords","sentiment-analysis","complete"|"translate-to-<lang>"] 
+    //any combination of the above will a valid task passed as array will be executed in order
+    "content": "string" //content to be processed
+}
+```
+**Query Parameters**
+```json
+{
+    "pipeline": "true"  //(default false) 
+    // if true, the each stage response will be returned in the response
+}
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+**Sample Request**
+url: /ask-ai
+body: 
+```json
+{
+    tasks:["summerize",
+        "extract-keywords"
+    ],
+    "content":"The rapid advancement of artificial intelligence is transforming industries across the globe. From healthcare and education to transportation and entertainment, AI technologies are streamlining operations, improving decision-making, and enhancing user experiences. However, with these innovations come important ethical considerations, including data privacy, algorithmic bias, and the future of employment. As we move forward, it's crucial to ensure that AI development remains transparent, inclusive, and aligned with societal values."
+}
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+**Response**
+```json
+{
+    {
+    "tasks": [
+        "summerize",
+        "extract-keywords"
+    ],
+    "content": "The rapid advancement of artificial intelligence is transforming industries across the globe. From healthcare and education to transportation and entertainment, AI technologies are streamlining operations, improving decision-making, and enhancing user experiences. However, with these innovations come important ethical considerations, including data privacy, algorithmic bias, and the future of employment. As we move forward, it's crucial to ensure that AI development remains transparent, inclusive, and aligned with societal values.",
+    "response": "artificial intelligence, industries, ethical considerations, data privacy, algorithmic bias, future of employment, transparent, inclusive, societal values"
+}
+}
+```
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+**Response with Pipeline**
+url: /ask-ai?pipeline=true
+body: Same body as above
+```json
+{
+    "tasks": [
+        "summerize",
+        "extract-keywords"
+    ],
+    "content": "The rapid advancement of artificial intelligence is transforming industries across the globe. From healthcare and education to transportation and entertainment, AI technologies are streamlining operations, improving decision-making, and enhancing user experiences. However, with these innovations come important ethical considerations, including data privacy, algorithmic bias, and the future of employment. As we move forward, it's crucial to ensure that AI development remains transparent, inclusive, and aligned with societal values.",
+    "response": "artificial intelligence, industries, ethical considerations, data privacy, algorithmic bias, future of employment, transparent, inclusive, societal values",
+    "pipeline": [
+        {
+            "summerize": "AI is transforming industries, streamlining operations, improving decision-making, and enhancing user experiences. Ethical considerations, including data privacy, algorithmic bias, and the future of employment, are crucial. AI development should remain transparent, inclusive, and aligned with societal values."
+        },
+        {
+            "extract-keywords": "artificial intelligence, industries, ethical considerations, data privacy, algorithmic bias, future of employment, transparent, inclusive, societal values"
+        }
+    ]
+}
 
-## Learn More
+```
 
-To learn more about Next.js, take a look at the following resources:
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+tasks sample
+```json
+{
+    "tasks": ["summerize","translate-to-zh" | "translate-to-chinese"]
+    //for trsnlation can be any of the above two is accepted
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+    //for example
+    "tasks":["summerize","extract-keywords","translate-to-bengali"]
+}
+```
